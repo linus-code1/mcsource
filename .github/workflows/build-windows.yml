@@ -1,0 +1,36 @@
+name: Build (Windows)
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - uses: microsoft/setup-msbuild@v2
+
+      - name: Generate solution
+        working-directory: src
+        shell: cmd
+        run: createallprojects.bat
+
+      - name: Build
+        working-directory: src
+        run: msbuild everything.sln /m /p:Configuration=Release /v:minimal
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mcsource-windows
+          path: |
+            game/mod_mcsource
+            game/bin
+            game/mod_mcsource*.exe
