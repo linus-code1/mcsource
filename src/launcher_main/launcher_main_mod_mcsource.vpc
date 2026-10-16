@@ -1,4 +1,4 @@
-$Macro OUTBINNAME "mod_hl2mp"
+$Macro OUTBINNAME "mod_mcsource"
 
 $Conditional "MOD_LAUNCHER" "1"
 
@@ -12,11 +12,11 @@ $Configuration
 	}
 }
 
-$Project "Launcher Main (Mod HL2MP)"
+$Project "Launcher Main (Mod MCSource)"
 {
     $Folder "Resource Files" [$WINDOWS]
     {
-        $File   "launcher_main_mod_hl2mp.rc"
-        $File   "res\mod_hl2mp.ico"
+        $File   "launcher_main_mod_mcsource.rc"
+        $File   "res\mod_mcsource.ico"
     }
 }
